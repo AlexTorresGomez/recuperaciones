@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cluster Role</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: #ffffff;
+      background-image: url('/Cluster_Role/proyecto/foto/background/fondo_2.png');
+      background-size: 100% 100%;
+      background-position: top left;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      
+    }
+
+    .titulo {
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .btn-warning {
+      background-color: #fceae3;
+      border: none;
+      border-radius: 10px;
+    }
+    .main {
+  background-color: rgba(21, 21, 21, 0.5);
+  border-radius: 10%;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+   
+@font-face {
+  font-family: 'Folkard';
+  src: url('fonts/Folkard.ttf') format('truetype');
+}
+
+.titulo {
+  font-family: 'Folkard', cursive;
+  font-size: 2rem;
+  background: linear-gradient(to bottom, #C9BD98 20%, #AC844C 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  letter-spacing: 0.05em;
+}
+
+  </style>
+</head>
+<body class="d-flex flex-column justify-content-between text-center d-flex justify-content-center align-items-center">
+
+  <div class="col-md-4 text-center d-flex justify-content-center align-items-center" style="width: 100vw; height: 10vh;">
+    <div><span><a href="/Cluster_Role/proyecto/pagina_main/index.html" class="titulo fw-bold fs-2 text-center" style="text-decoration: none;">Cluster Role</a></span></div>
+  </div>
+
+<div class="col-10 col-md-6 col-lg-4 contenido-central text-center flex-column d-flex justify-content-center align-items-center main" style="width: 30vw; height: 70vh;">
+        <h2 class="mb-4">Registro</h2>
+<form method="POST" id="loginForm" >
+  <div class="mb-3 text-start">
+    <label for="user_name" class="form-label">Usuario:</label>
+    <input type="text" name="user_name" placeholder="Usuario" required class="form-control mb-2">
+  </div>
+
+  <div class="mb-3 text-start">
+    <label for="pass" class="form-label">Contraseña:</label>
+    <input type="password" name="pass" placeholder="Contraseña" required class="form-control mb-2">
+  </div>
+
+  <button type="submit" class="btn w-75" style="background-color: #2E4D41; color: white;">Iniciar sesión</button><br><br>
+
+  <button type="button" class="btn w-75" style="background-color: #2E4D41; color: white;" onclick="window.location.href='../../../Cluster_Role/proyecto/crear/crear_usuario.html'">
+    Registrar
+  </button>
+</form>
+  </div>
+  <footer class="d-flex justify-content-center align-items-center" style="margin: 0px; padding: 0px; width: 100%; height: 20vh; ">
+    <div class="container">
+      <div class="row text-center text-md-start d-flex justify-content-center align-items-center">
+        <div class="col-md-2 border: 1px solid black">
+          <h4> <a href="/Cluster_Role/proyecto/pagina_main/privacitat.html" style="text-decoration: none; color: #ffffff;">Privacitat</a></h4>
+          <p></p>
+        </div>
+        <div class="col-md-2 text-center">
+          <h4> <a href="/Cluster_Role/proyecto/pagina_main/seguretat.html" style="text-decoration: none; color: #ffffff;">Seguretat</a></h4>
+          <p></p>
+        </div>
+        <div class="col-md-4 text-center">
+        <div><span><a href="/Cluster_Role/proyecto/pagina_main/index.html" class="titulo fw-bold fs-2 text-center" style="text-decoration: none; color: white;">Cluster Role</a></span></div>
+        </div>
+        <div class="col-md-2 text-center">
+          <h4>Contactan's</h4>
+          <p>+34 (973) 380-3480</p>
+          <p>Cluster_Role@gmail.com</p>
+          
+        </div><div class="social-icons col-md-2 d-flex flex-column justify-content-center">
+            <p><a href="https://youtube.com" target="_blank" style="text-decoration: none;"><i class="fab fa-youtube"></i> YouTube</a></p>
+            <p><a href="https://twitter.com" target="_blank" style="text-decoration: none;"><i class="fab fa-twitter"></i> Twitter</a></p>
+            <p><a href="https://instagram.com" target="_blank" style="text-decoration: none;"><i class="fab fa-instagram"></i> Instagram</a></p>
+          </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("login.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = data.redirect;
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+      alert("Error de red o del servidor.");
+      console.error(error);
+    });
+  });
+</script>
+</html>
