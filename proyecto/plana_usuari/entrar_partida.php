@@ -1,6 +1,12 @@
 <?php
 session_start();
-require_once 'conexion.php'; 
+if (!isset($_SESSION['id_user'])) {
+    // Si no hay sesión iniciada, redirige al login
+    header("Location: /Cluster_Role/proyecto/login/login.html");
+    exit();
+}
+
+include("conexion.php");
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");

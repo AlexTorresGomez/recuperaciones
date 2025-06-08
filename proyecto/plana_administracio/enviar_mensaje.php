@@ -26,6 +26,6 @@ if ($mensaje !== '') {
   $stmt2->execute();
 }
 
-header("Location: usuario.php");
+header("Location: admin.php");
 $_SESSION['LAST_ACTIVITY'] = time();
 exit;

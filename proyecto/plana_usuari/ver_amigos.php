@@ -2,6 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (!isset($_SESSION['id_user'])) {
+    // Si no hay sesión iniciada, redirige al login
+    header("Location: /Cluster_Role/proyecto/login/login.html");
+    exit();
+}
+
 include("conexion.php");
 
 $id_user = $_SESSION['id_user'] ?? 0;

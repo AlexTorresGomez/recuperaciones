@@ -1,6 +1,12 @@
 <?php
 session_start();
-require_once 'conexion.php';
+if (!isset($_SESSION['id_user'])) {
+    // Si no hay sesión iniciada, redirige al login
+    header("Location: /Cluster_Role/proyecto/login/login.html");
+    exit();
+}
+
+include("conexion.php");
 
 $id_partida = intval($_GET['id_partida'] ?? 0);
 $id_user_actual = $_SESSION['id_user'] ?? 0;

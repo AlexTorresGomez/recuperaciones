@@ -153,7 +153,6 @@ function actualizarUsuarios(filtro) {
             <th>Likes</th>
             <th>Dislikes</th>
             <th>Foto Perfil</th>
-            <th>Premium</th>
           </tr>
         </thead>
         <tbody ></tbody>
@@ -177,7 +176,6 @@ function actualizarUsuarios(filtro) {
           <td>${u.positivo}</td>
           <td>${u.negativo}</td>
           <td><img src="data:image/jpeg;base64,${u.profile_photo}" alt="Foto" width="50" height="50" class="rounded-circle" /></td>
-          <td>${u.premium}</td>
         `;
         tbody.appendChild(fila);
       });

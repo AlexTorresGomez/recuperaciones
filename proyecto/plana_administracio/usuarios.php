@@ -15,12 +15,13 @@ if ($conn->connect_error) {
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
 
 if ($filtro === "baneados") {
-    $sql = "SELECT * FROM usuarios WHERE baneo = 1";
+    $sql = "SELECT * FROM usuarios WHERE baneo = 1 AND (administrador = 0 OR administrador IS NULL)";
 } elseif ($filtro === "no_baneados") {
-    $sql = "SELECT * FROM usuarios WHERE baneo IS NULL OR baneo = 0";
+    $sql = "SELECT * FROM usuarios WHERE (baneo IS NULL OR baneo = 0) AND (administrador = 0 OR administrador IS NULL)";
 } else {
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuarios WHERE (administrador = 0 OR administrador IS NULL)";
 }
+
 
 $result = $conn->query($sql);
 

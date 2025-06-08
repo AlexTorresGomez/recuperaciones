@@ -22,28 +22,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
+if ($result->num_rows == 1) {
+    $usuario = $result->fetch_assoc();
 
-    if ($result->num_rows == 1) {
-        $usuario = $result->fetch_assoc();
-
-        if (!empty($usuario['contraseña']) && password_verify($password, $usuario['contraseña'])) {
-            $_SESSION['user_name'] = $usuario['user_name'];
-            $_SESSION['id_user'] = $usuario['id_user'];
-
-            $redirect = ($usuario['administrador'] == 1)
-                ? "/Cluster_Role/proyecto/plana_administracio/admin.php"
-                : "/Cluster_Role/proyecto/plana_usuari/usuario.php";
-
-            echo json_encode(['success' => true, 'redirect' => $redirect]);
-            exit();
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta.']);
+    if (!empty($usuario['contraseña']) && password_verify($password, $usuario['contraseña'])) {
+        
+        // Aquí comprobamos si está baneado
+        if (isset($usuario['baneo']) && $usuario['baneo'] == 1) {
+            echo json_encode(['success' => false, 'message' => 'Tu cuenta ha sido baneada.']);
             exit();
         }
+
+        // Si no está baneado, seguimos como siempre
+        $_SESSION['user_name'] = $usuario['user_name'];
+        $_SESSION['id_user'] = $usuario['id_user'];
+
+        $redirect = ($usuario['administrador'] == 1)
+            ? "/Cluster_Role/proyecto/plana_administracio/admin.php"
+            : "/Cluster_Role/proyecto/plana_usuari/usuario.php";
+
+        echo json_encode(['success' => true, 'redirect' => $redirect]);
+        exit();
     } else {
-        echo json_encode(['success' => false, 'message' => 'Usuario no encontrado.']);
+        echo json_encode(['success' => false, 'message' => 'Contraseña incorrecta.']);
         exit();
     }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Usuario no encontrado.']);
+    exit();
+}
+
 }
 ?>
 
