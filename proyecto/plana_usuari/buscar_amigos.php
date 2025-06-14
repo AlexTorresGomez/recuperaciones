@@ -37,7 +37,11 @@ $conn->close();
 
 
 </head>
+
+
+
 <body style="height: 100vh; overflow: hidden; margin: 0;">
+
   <header class="border-bottom border-secondary py-3 px-4">
   <div class="d-flex align-items-center justify-content-evenly" style="width: 100%;">
     
@@ -49,7 +53,7 @@ $conn->close();
 
     <!-- Centro: Cluster Role -->
     <div class="fw-bold fs-2 text-center titulo">
-      <a href="#" class="text-decoration-none">Cluster Role</a>
+      <a href="usuario.php" class="text-decoration-none">Cluster Role</a>
     </div>
 
     <!-- Derecha: Amigos y Usuario -->
@@ -112,14 +116,20 @@ $conn->close();
       </aside>
 
       <main class="col-md-8 p-4">
-       <div class="banner mb-3 position-relative text-center text-overlay">
-        <img src="/Cluster_Role/proyecto/foto/photos/foto_update.jpg" width="100%" height="70%" alt="">
-          <div class="overlay-text titulo">Updates</div>
-        </div>
-        <section class="versiones p-3 border rounded" style="height: 278px; border-color: #717C6E; background-color: #68746C; color: #C9BD98;">
-          <p class="titulo text-center">Historial de Versiones</p>
-          <?php include 'mostrar_versiones.php'; ?>
-        </section>
+       <div class="p-3 border rounded">
+    <h5> Buscar usuarios</h5>
+    <form method="POST" action="">
+      <input type="text" name="buscar" placeholder="Buscar por nombre" class="form-control mb-2" required>
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <div class="mt-3">
+      <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["buscar"])) {
+          include 'buscar_usuarios.php';
+        }
+      ?>
+    </div>
+  </div>
       </main>
 
    <aside class="col-md-2 p-2 d-flex flex-column justify-content-around" style="background-color: rgb(82,93,90); height: 100%;">
@@ -175,4 +185,3 @@ $conn->close();
     mensajes.scrollTop = mensajes.scrollHeight;
   };
 </script>
-

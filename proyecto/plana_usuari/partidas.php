@@ -37,19 +37,23 @@ $conn->close();
 
 
 </head>
+
+
+
 <body style="height: 100vh; overflow: hidden; margin: 0;">
+
   <header class="border-bottom border-secondary py-3 px-4">
   <div class="d-flex align-items-center justify-content-evenly" style="width: 100%;">
     
     <!-- Izquierda: Grupos y Partida -->
     <div class="d-flex justify-content aling-item-center gap-4 fs-3">
       <a href="grupos.php" class="text-decoration-none fw-semibold titulo">Grupos</a>
-      <a href="partidas.php" class="text-decoration-none fw-semibold titulo">Partida</a>
+      <a href="#" class="text-decoration-none fw-semibold titulo">Partida</a>
     </div>
 
     <!-- Centro: Cluster Role -->
     <div class="fw-bold fs-2 text-center titulo">
-      <a href="#" class="text-decoration-none">Cluster Role</a>
+      <a href="usuario.php" class="text-decoration-none">Cluster Role</a>
     </div>
 
     <!-- Derecha: Amigos y Usuario -->
@@ -61,8 +65,8 @@ $conn->close();
           Amigos
         </a>
         <ul class="dropdown-menu " aria-labelledby="dropdownAmigos">
-          <li><a class="dropdown-item" href="ver_amigos.php">Ver amigos</a></li>
-          <li><a class="dropdown-item" href="buscar_amigos.php">Buscar amigos</a></li>
+          <li><a class="dropdown-item" href="#">Ver amigos</a></li>
+          <li><a class="dropdown-item" href="#">Buscar amigos</a></li>
         </ul>
       </div>
 
@@ -112,14 +116,8 @@ $conn->close();
       </aside>
 
       <main class="col-md-8 p-4">
-       <div class="banner mb-3 position-relative text-center text-overlay">
-        <img src="/Cluster_Role/proyecto/foto/photos/foto_update.jpg" width="100%" height="70%" alt="">
-          <div class="overlay-text titulo">Updates</div>
-        </div>
-        <section class="versiones p-3 border rounded" style="height: 278px; border-color: #717C6E; background-color: #68746C; color: #C9BD98;">
-          <p class="titulo text-center">Historial de Versiones</p>
-          <?php include 'mostrar_versiones.php'; ?>
-        </section>
+        <h1>Grupos donde estoy</h1>
+      <?php include("mostrar_grupos.php"); ?>
       </main>
 
    <aside class="col-md-2 p-2 d-flex flex-column justify-content-around" style="background-color: rgb(82,93,90); height: 100%;">

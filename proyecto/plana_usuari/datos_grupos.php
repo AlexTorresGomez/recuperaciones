@@ -25,7 +25,7 @@ if ($result->num_rows === 0) {
     echo "<ul>";
     while ($row = $result->fetch_assoc()) {
         $group_name = htmlspecialchars($row['group_name'] ?? '');
-        echo "<li>" . $group_name . "</li>"; 
+        echo '<li style="text-decoration:none;">' . $group_name . '</li>'; 
     }
     echo "</ul>";
 }

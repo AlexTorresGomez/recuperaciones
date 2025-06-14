@@ -1,7 +1,6 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_user'])) {
-    // Si no hay sesión iniciada, redirige al login
     header("Location: /Cluster_Role/proyecto/login/login.html");
     exit();
 }
@@ -88,13 +87,24 @@ $conn->close();
       </div>
     </div>
   </header>
-    <div class="container-fluid mt-4 px-5">
+<div class="container-fluid mt-4 px-5">
   <div class="row g-4">
     <div class="col-md-6 d-flex justify-content-center align-items-start">
       <?php if ($mapa): ?>
-        <img src="data:image/jpeg;base64,<?= base64_encode($mapa) ?>"
-             alt="Mapa de la partida"
-             class="img-fluid rounded shadow mapa-img" />
+        <div id="mapa-container" style="position: relative; width: fit-content;">
+          <img src="data:image/jpeg;base64,<?= base64_encode($mapa) ?>" 
+               alt="Mapa de la partida"
+               class="img-fluid rounded shadow mapa-img"
+               id="mapa" />
+
+          <!-- Imágenes de personajes -->
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero1.png" class="personaje" style="top: 10px; left: 10px;">
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero2.png" class="personaje" style="top: 10px; left: 80px;">
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero3.png" class="personaje" style="top: 10px; left: 150px;">
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero4.png" class="personaje" style="top: 80px; left: 10px;">
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero5.png" class="personaje" style="top: 80px; left: 80px;">
+          <img src="/Cluster_Role/proyecto/foto/personajes/guerrero6.png" class="personaje" style="top: 80px; left: 150px;">
+        </div>
       <?php else: ?>
         <p class="text-center">No hay imagen de mapa disponible.</p>
       <?php endif; ?>
@@ -108,6 +118,66 @@ $conn->close();
     </div>
   </div>
 </div>
+
+<style>
+  #mapa-container {
+    position: relative;
+  }
+
+  .personaje {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: move;
+    user-select: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const personajes = document.querySelectorAll('.personaje');
+    personajes.forEach(personaje => {
+      personaje.addEventListener('mousedown', dragStart);
+    });
+
+    let offsetX, offsetY, currentImg;
+
+    function dragStart(e) {
+      currentImg = e.target;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+
+      document.addEventListener('mousemove', dragging);
+      document.addEventListener('mouseup', dragEnd);
+    }
+
+    function dragging(e) {
+      if (!currentImg) return;
+
+      const contenedor = document.getElementById('mapa-container');
+      const rect = contenedor.getBoundingClientRect();
+
+      let x = e.clientX - rect.left - offsetX;
+      let y = e.clientY - rect.top - offsetY;
+
+      // Limita dentro del contenedor
+      const maxX = rect.width - currentImg.offsetWidth;
+      const maxY = rect.height - currentImg.offsetHeight;
+
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      currentImg.style.left = x + 'px';
+      currentImg.style.top = y + 'px';
+    }
+
+    function dragEnd() {
+      document.removeEventListener('mousemove', dragging);
+      document.removeEventListener('mouseup', dragEnd);
+      currentImg = null;
+    }
+  });
+</script>
 
 
 </body>
