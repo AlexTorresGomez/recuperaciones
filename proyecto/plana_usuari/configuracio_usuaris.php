@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['id_user'])) {
+    // Si no hay sesión iniciada, redirige al login
     header("Location: /Cluster_Role/proyecto/login/login.html");
     exit();
 }
@@ -36,11 +37,7 @@ $conn->close();
 
 
 </head>
-
-
-
 <body style="height: 100vh; overflow: hidden; margin: 0;">
-
   <header class="border-bottom border-secondary py-3 px-4">
   <div class="d-flex align-items-center justify-content-evenly" style="width: 100%;">
     
@@ -111,13 +108,11 @@ $conn->close();
     <i class="bi bi-send-fill"></i>
   </button>
         </form>
-
       </aside>
+
   <main class="col-md-8 p-4">
-  
     <h5> Tu Perfil:</h5>
     <?php include 'perfil.php'; ?>
-  
 </main>
 
    <aside class="col-md-2 p-2 d-flex flex-column justify-content-around" style="background-color: rgb(82,93,90); height: 100%;">

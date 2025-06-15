@@ -29,12 +29,10 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cluster Role - Layout Discord</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-
+ <link rel="stylesheet" href="styles.css" />
 </head>
 
 
@@ -142,24 +140,34 @@ $conn->close();
            
 
     // Aquí pones todo tu contenido de grupos
-    echo '<div style="width: 30%">';
-        echo '<a href="ver_grupos.php?id=' . $id_group . '" class="text-decoration-none">';
-        echo '<div style="width: 150px; height: 150px; border: 2px solid #ccc; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center;">';
-        echo '<img src="' . $imgSrc . '" alt="' . $group_name . '" style="width: 100%; height: 100%; object-fit: cover;">';
-        echo '</div>';
-        echo '</a>';
+echo '<div class="text-center me-3 mb-3" style="width: 170px;">';
 
-        echo '<div class="mt-2 d-flex justify-content-between">';
-        echo '<form action="grupos.php" method="get" style="margin-right: 5px;">';
+    // Imagen del grupo con enlace
+    echo '<a href="ver_grupos.php?id=' . $id_group . '" class="text-decoration-none">';
+    echo '<div style="width: 150px; height: 150px; border: 2px solid #ccc; border-radius: 10px; overflow: hidden; margin: auto;">';
+    echo '<img src="' . $imgSrc . '" alt="' . $group_name . '" style="width: 100%; height: 100%; object-fit: cover;">';
+    echo '</div>';
+    echo '</a>';
+
+    // Botones debajo de la imagen
+    echo '<div class="mt-2 d-flex justify-content-center" style="gap: 5px;">';
+
+        // Botón Modificar
+        echo '<form action="grupos.php" method="get" class="m-0">';
         echo '<input type="hidden" name="modificar" value="' . $id_group . '">';
-        echo '<button type="submit" class="btn btn-sm btn-warning">Modificar</button>';
+        echo '<button type="submit" class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 12px;">Modificar</button>';
         echo '</form>';
-        echo '<form action="eliminar_grupo.php" method="post" onsubmit="return confirm(\'¿Seguro que quieres eliminar este grupo?\');">';
+
+        // Botón Eliminar
+        echo '<form action="eliminar_grupo.php" method="post" onsubmit="return confirm(\'¿Seguro que quieres eliminar este grupo?\');" class="m-0">';
         echo '<input type="hidden" name="id_group" value="' . $id_group . '">';
-        echo '<button type="submit" class="btn btn-sm btn-danger">Eliminar</button>';
+        echo '<button type="submit" class="btn btn-danger btn-sm" style="padding: 2px 10px; font-size: 12px;">Eliminar</button>';
         echo '</form>';
-        echo '</div>';
-        echo '</div>';
+
+    echo '</div>';
+
+echo '</div>';
+
 
         if ($idModificar == $id_group) {
             echo '<form method="POST" action="modificar_grupo.php" enctype="multipart/form-data" class="mt-3">';
@@ -225,7 +233,7 @@ for ($i = $totalGrupos; $i < 3; $i++) {
   </div>
 
   <div class="group-box mt-2">
-    <a href="ver_amigos.php">
+    <a  class="colortitulo "href="ver_amigos.php">
       <button style="width: 100%; background-color: rgb(104,116,108); color: rgb(201,189,152); border:none; border-radius: 4px; padding: 4px;">
         <h3 class="text-center titulo pt-1" style="font-size: 0.85rem;">Amigos</h3>
       </button>

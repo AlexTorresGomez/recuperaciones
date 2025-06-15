@@ -38,7 +38,7 @@ if ($resultado && $resultado->num_rows > 0) {
 
         $estilos .= " overflow-wrap: break-word; background-color: #3A3A3A; color: #ffffff; margin-left: auto; text-align: right;";
     } else {
-        $estilos .= " margin-right: auto; background-color: #3A3A3A;";
+        $estilos .= " margin-right: auto; background-color: #3A3A3A; color: #ffffff;";
     }
 
     $nombre_estilo = $es_admin ? 'color: #ffffff' : '';

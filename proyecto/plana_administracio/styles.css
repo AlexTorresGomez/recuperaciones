@@ -40,7 +40,7 @@ header {
 
 main, aside {
   height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 footer {
@@ -60,7 +60,6 @@ main {
   padding: 2rem 3rem;
   background: #464e47cc;
 }
-
 
 .btn {
   background: linear-gradient(45deg, #AC844C, #C9BD98);
@@ -125,11 +124,12 @@ input::placeholder, textarea::placeholder {
 }
 
 .banner {
-  height: 325px;
+  height: 250px;
 }
 .banner img {
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease;
   cursor: pointer;
   width: 100%;
   height: 100%;
@@ -166,24 +166,48 @@ ul {
 }
 
 #mensajes {
-  background-color: #464E47;
   padding: 15px;
   border-radius: 12px;
   box-shadow: inset 0 0 10px #525D5A;
   height: 500px;
   overflow-y: auto;
+ 
+  overflow-x: hidden;
+
   font-size: 0.95rem;
-  line-height: 1.3;
+  line-height: 1.5;
   user-select: text;
+  color: rgb(201, 189, 152);
+  background-color: transparent; /* fondo eliminado como pediste */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+
+.mensaje {
+  background-color: #ffffff; /* suave, respeta tu color base */
+  padding: 10px 14px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border-left: 4px solid #AC844C;
+}
+
+/* Scrollbar bonito */
+#mensajes::-webkit-scrollbar {
+  width: 8px;
+}
+
 #mensajes::-webkit-scrollbar-track {
-  background: #333633;
+  background: #3A3A3A;
   border-radius: 12px;
 }
+
 #mensajes::-webkit-scrollbar-thumb {
   background: #AC844C;
   border-radius: 12px;
 }
+
 
 aside form textarea {
   min-height: 80px;
@@ -210,7 +234,6 @@ aside form textarea {
   }
 }
 
-/* === ESTILOS ADICIONALES (NO ELIMINADOS) === */
 .bg-claro { background-color: #fff6f4; }
 .bg-rosa-suave { background-color: #fbe3db; }
 
@@ -236,6 +259,7 @@ aside form textarea {
   background-color: #fff0f0;
   border: 1px solid #d3a4a4;
   border-radius: 10px;
+  overflow-x: hidden;
 }
 
 h2, h3 {
@@ -246,20 +270,190 @@ h2, h3 {
   font-family: 'Folkard';
   src: url('fonts/Folkard.ttf') format('truetype');
 }
-
-.text-overlay {
-  position: relative;
-}
-
 .overlay-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3rem; /* Cambia según el tamaño deseado */
+  font-size: 3rem;
   font-weight: bold;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* Opcional para resaltar sobre la imagen */
-  pointer-events: none; /* Evita que interfiera con clics */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  pointer-events: none;
   z-index: 2;
 }
+
+.mapa-img {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border: 3px solid #AC844C;
+  background-color: #333633;
+  padding: 5px;
+}
+
+.chat-frame {
+  border: 2px solid #A4AC94;
+  box-shadow: 0 0 15px rgba(172,132,76, 0.4);
+}
+.btn-enviar {
+  width: 36px;         /* antes 48px */
+  height: 36px;        /* antes 48px */
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  font-size: 1rem;     /* también reducido un poco */
+  transition: background-color 0.3s;
+  padding: 0;
+}
+.contenedor-perfil {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    color: white;
+    max-width: 900px;
+    margin: 50px auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contenedor-perfil img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.formulario-perfil {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario-perfil label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.formulario-perfil input,
+.formulario-perfil textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.formulario-perfil input[type="submit"] {
+    background-color: #4caf50;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formulario-perfil input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+.btn-super-sm {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  line-height: 1;
+}
+/* === RESPONSIVE TABLET (600px a 900px aprox.) === */
+@media (min-width: 600px) and (max-width: 900px) {
+  
+  html, body {
+    font-size: 0.9rem; /* tamaño de fuente un poco menor */
+  }
+
+  header {
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+  }
+
+  main {
+    padding: 1.5rem 2rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;    /* botones un poco más pequeños */
+    padding: 0.5rem 1rem;
+    border-radius: 24px;
+  }
+
+  .btn-enviar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  .contenedor-perfil {
+    padding: 15px 20px;
+    gap: 20px;
+    max-width: 95%;
+  }
+
+  .contenedor-perfil img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .formulario-perfil label {
+    font-size: 0.9rem;
+  }
+
+  .formulario-perfil input,
+  .formulario-perfil textarea {
+    padding: 6px;
+  }
+
+  #mensajes {
+    height: 350px; /* menos alto para tablets */
+    font-size: 0.9rem;
+  }
+
+  .banner {
+    height: 180px; /* banner menos alto */
+  }
+
+  .banner img {
+    border-radius: 12px;
+  }
+
+  /* Para que main y aside se adapten mejor en tablet */
+  .container-fluid .row {
+    flex-direction: column;
+  }
+  main, aside {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  /* Ajustes para inputs y textarea */
+  input, textarea {
+    font-size: 0.9rem;
+  }
+  
+  /* Ajuste de la clase .titulo para tablet */
+  .titulo {
+    font-size: 1.7rem;
+  }
+
+  /* Ajuste para la clase card-body (texto) */
+  .card-body {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
 

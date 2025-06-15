@@ -20,8 +20,8 @@ $consulta = "
   FROM chat
   JOIN chat_usuarios ON chat.id_chat = chat_usuarios.id_chat
   JOIN usuarios ON chat_usuarios.id_usuarios = usuarios.id_user
-  ORDER BY chat.id_chat ASC
-  
+  ORDER BY chat.date asc
+
 ";
 
 $resultado = $conn->query($consulta);
@@ -31,25 +31,21 @@ if ($resultado && $resultado->num_rows > 0) {
     $es_usuario_actual = $row['id_user'] == $id_usuario_actual;
     $es_admin = $row['administrador'] == 1;
 
-    $estilos = "padding: 10px; margin-bottom: 10px; border-radius: 10px; background-color: #444;";
+    $estilos = "padding: 10px; margin-bottom: 10px; border-radius: 10px; background-color: #ffffff;";
     $clase = "chat-bubble";
-   
+
     if ($es_usuario_actual) {
-    
-        // Verde y alineado a la derecha
-        $estilos .= " background-color: rgb(100,96,79); color: rgb(201,189,152); margin-left: auto; text-align: right;";
+
+        $estilos .= " overflow-wrap: break-word; background-color: #3A3A3A; color: #ffffff; margin-left: auto; text-align: right;";
     } else {
-        // Alineado a la izquierda por defecto
-       
-        $estilos .= " margin-right: auto; background-color: #C9BD98;";
+        $estilos .= " margin-right: auto; background-color: #3A3A3A; color: #ffffff;";
     }
 
-    $nombre_estilo = $es_admin ? 'color: #AC844C' : '';
+    $nombre_estilo = $es_admin ? 'color: #ffffff' : '';
 
     echo '<div class="w-75 ' . $clase . '" style="' . $estilos . '">';
-    echo '<div style="' . $nombre_estilo . '">' . htmlspecialchars($row['user_name']) . ':</div>';
+    echo '<div style="color: #ffffff' . $nombre_estilo . '">' . htmlspecialchars($row['user_name']) . ':</div>';
     echo '<div style="' . $nombre_estilo . '">' . htmlspecialchars($row['text']) . '</div>';
-    echo '<div style="font-size: 0.75em; color: #ffffff;">' . date('H:i', strtotime($row['date'])) . '</div>';
     echo '</div>';
   }
 } else {
@@ -58,4 +54,3 @@ if ($resultado && $resultado->num_rows > 0) {
 
 $_SESSION['LAST_ACTIVITY'] = time();
 ?>
-

@@ -362,3 +362,115 @@ h2, h3 {
 
 
 
+.colortitulo{
+
+  color:#AC844C;
+}
+/* === RESPONSIVE ADICIONAL === */
+
+/* Tablets y móviles grandes (hasta 1024px) */
+@media (max-width: 1024px) {
+  .container-fluid {
+    height: auto; /* que no sea fijo para que se adapte */
+    flex-direction: column;
+  }
+
+  .container-fluid .row {
+    flex-direction: column;
+  }
+
+  main, aside {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  main {
+    padding: 1.5rem 2rem;
+  }
+
+  aside {
+    max-height: none;
+    margin-top: 1rem;
+  }
+
+  .banner {
+    height: 180px;
+  }
+
+  .banner img {
+    border-radius: 12px;
+  }
+
+  .contenedor-perfil {
+    padding: 15px 20px;
+    max-width: 100%;
+    gap: 20px;
+  }
+
+  .contenedor-perfil img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  header {
+    font-size: 1.4rem;
+    padding: 0.8rem 1rem;
+  }
+
+  main {
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .titulo {
+    font-size: 1.6rem;
+  }
+
+  .banner {
+    height: 140px;
+  }
+
+  .banner img {
+    border-radius: 10px;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .group-box button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #mensajes {
+    height: 300px;
+    font-size: 0.85rem;
+  }
+
+  .contenedor-perfil {
+    flex-direction: column;
+    padding: 10px 15px;
+    gap: 15px;
+  }
+
+  .contenedor-perfil img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .formulario-perfil input,
+  .formulario-perfil textarea {
+    font-size: 0.9rem;
+  }
+
+  .btn-enviar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}

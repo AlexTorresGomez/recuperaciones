@@ -46,9 +46,9 @@ $conn->close();
   <div class="d-flex align-items-center justify-content-evenly" style="width: 100%;">
     
     <!-- Izquierda: Grupos y Partida -->
-    <div class="d-flex justify-content aling-item-center gap-4 fs-3">
+   <div class="d-flex justify-content aling-item-center gap-4 fs-3">
       <a href="grupos.php" class="text-decoration-none fw-semibold titulo">Grupos</a>
-      <a href="#" class="text-decoration-none fw-semibold titulo">Partida</a>
+      <a href="partidas.php" class="text-decoration-none fw-semibold titulo">Partida</a>
     </div>
 
     <!-- Centro: Cluster Role -->
@@ -65,8 +65,8 @@ $conn->close();
           Amigos
         </a>
         <ul class="dropdown-menu " aria-labelledby="dropdownAmigos">
-          <li><a class="dropdown-item" href="#">Ver amigos</a></li>
-          <li><a class="dropdown-item" href="#">Buscar amigos</a></li>
+         <li><a class="dropdown-item" href="ver_amigos.php">Ver amigos</a></li>
+          <li><a class="dropdown-item" href="buscar_amigos.php">Buscar amigos</a></li>
         </ul>
       </div>
 

@@ -48,7 +48,7 @@ $gruposMostrados = 0;
 foreach ($grupos as $grupo) {
     echo "<div style='width: 150px; height: 150px; background-color: white; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.1); padding: 6px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;'>";
 
-    echo "<h3 style='font-size: 0.9em; margin-bottom: 4px;'>" . htmlspecialchars($grupo['group_name']) . "</h3>";
+    
 
     $imagen = base64_encode($grupo['profile_photo']);
     echo "<a href='entrar_grupo.php?id=" . $grupo['id_group'] . "' style='margin-bottom: 6px;'>";

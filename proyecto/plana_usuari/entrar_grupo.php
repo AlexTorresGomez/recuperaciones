@@ -89,7 +89,7 @@ $conn->close();
   </header>
 <div class="container-fluid mt-4 px-5">
   <div class="row g-4">
-    <div class="col-md-6 d-flex justify-content-center align-items-start">
+    <div class="col-md-6 d-flex justify-content-center align-items-start" style ="height: 500px; width: 500px;";>
       <?php if ($mapa): ?>
         <div id="mapa-container" style="position: relative; width: fit-content;">
           <img src="data:image/jpeg;base64,<?= base64_encode($mapa) ?>" 
