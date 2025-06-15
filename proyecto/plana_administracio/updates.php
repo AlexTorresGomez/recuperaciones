@@ -73,7 +73,7 @@ $conn->close();
                style="width: 40px; height: 40px; object-fit: cover; cursor: pointer;" />
         <?php endif; ?>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="background-color:#525D5A; color: #C9BD98;">
-          <li><a class="dropdown-item" href="login.php" style="color:#C9BD98;">Cerrar sesión</a></li>
+          <li><a class="dropdown-item" href="logout.php" style="color:#C9BD98;">Cerrar sesión</a></li>
         </ul>
       </div>
     </div>
